@@ -9,15 +9,15 @@ import { combineReducers } from 'redux';
 import data from './data';
 
 const initialState = {
-  cart: data,
-  loading: false,
+  cart: [],
+  loading: true,
   amount: 0,
   price: 0,
 };
 
 function rootReducer(state = initialState, action) {
   if (action.type === GET_PRODUCTS) {
-    return { ...state, products: action.payload };
+    return { ...state, cart: action.payload, loading: false };
   }
   if (action.type === REMOVE_PRODUCT) {
     const tempCart = state.cart.filter((item) => item.id !== action.payload);
